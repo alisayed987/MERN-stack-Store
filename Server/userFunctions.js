@@ -77,18 +77,3 @@ module.exports.validateRegisteredUser = validateRegisteredUser;
 module.exports.validateUser = validateUser;
 module.exports.validateItem = validateItem;
 module.exports.createUser = createUser;
-// let os = {
-//   name: "Ali",
-//   username: "LolyZzz",
-//   password: "Alisaid159",
-//   address: "myaddressis",
-//   phone: "01111111111",
-//   image: "lol",
-// };
-
-// try {
-//   const v = validateUser(os);
-//   console.log(v);
-// } catch (errr) {
-//   console.log(errr);
-// }
