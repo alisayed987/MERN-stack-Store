@@ -1,0 +1,26 @@
+{
+  "name": "store-back",
+  "version": "1.0.0",
+  "description": "store server",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alisayed987/MERN-stack-Store.git"
+  },
+  "author": "Ali Sayed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alisayed987/MERN-stack-Store/issues"
+  },
+  "homepage": "https://github.com/alisayed987/MERN-stack-Store#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "config": "^3.3.6",
+    "debug": "^4.3.3",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.14"
+  }
+}
