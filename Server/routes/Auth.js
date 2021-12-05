@@ -1,10 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const { usermodel } = require("../models/User");
-const { itemmodel } = require("../models/Item");
-const order = require("../models/Order");
 const registerebug = require("debug")("app:register");
 const logindebug = require("debug")("app:login");
 const {
@@ -19,7 +15,7 @@ router.post("/login", async (req, res) => {
   logindebug(req.body);
   try {
     const logged = await validateUser(req.body, usermodel);
-    res.status(200).send(logged);
+    res.status(200).header("access-token", logged).send("Logged in");
   } catch (error) {
     res.send(error.message);
   }

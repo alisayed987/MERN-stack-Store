@@ -1,8 +1,10 @@
 const joi = require("joi");
 const registerdebug = require("debug")("app:register");
 const logindebug = require("debug")("app:login");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
+//------Registeration Validation------------------------------------------
 async function validateRegisteredUser(obj, usermodel) {
   const joischem = joi.object({
     name: joi.string().min(3).max(10).required(),
@@ -25,6 +27,8 @@ async function validateRegisteredUser(obj, usermodel) {
     throw validated.error;
   }
 }
+
+//---------Login Validation------------------------------------------------
 async function validateUser(obj, usermodel) {
   const joischem = joi.object({
     email: joi.string().email(),
@@ -38,8 +42,10 @@ async function validateUser(obj, usermodel) {
       throw new Error("user is not found"); //user not found
     } else {
       const rightpassword = await bcrypt.compare(obj.password, query.password);
-      if (rightpassword) return "Loged in";
-      else throw new Error("wrong password");
+      if (rightpassword) {
+        const token = jwt.sign({ name: query.name, id: query._id }, "mySecret");
+        return token;
+      } else throw new Error("wrong password");
     }
   } else {
     throw validated.error;
@@ -75,5 +81,5 @@ async function createUser(obj, usermodel) {
 
 module.exports.validateRegisteredUser = validateRegisteredUser;
 module.exports.validateUser = validateUser;
-module.exports.validateItem = validateItem;
+
 module.exports.createUser = createUser;
